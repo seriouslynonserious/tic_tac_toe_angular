@@ -1,0 +1,51 @@
+<h1 class="heading">TIC TAC TOE!!</h1>
+
+<div class="playerpanel">
+  <div class="player">
+    <input type="text" class="player-input" [(ngModel)]="playerA.name" [readOnly]="!playerA.isEditing" />
+    <div>
+      <button class="edit-button" (click)="updatePlayerName('A')">{{ playerA.isEditing ? 'Save' : 'Edit' }}</button>
+      <button class="edit-button">X</button>
+      <button *ngIf="playerA.isTurn" class="btn btn-success btn-circle btn-sm">Turn</button>
+    </div>
+  </div>
+  <button class="btn btn-danger btn-circle btn-sm" (click)="resetGame()">Reset</button>
+  <div class="player">
+    <input type="text" class="player-input" [(ngModel)]="playerB.name" [readOnly]="!playerB.isEditing" />
+    <div>
+      <button class="edit-button" (click)="updatePlayerName('B')">{{ playerB.isEditing ? 'Save' : 'Edit' }}</button>
+      <button class="edit-button">O</button>
+      <button *ngIf="playerB.isTurn" class="btn btn-success btn-circle btn-sm">Turn</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="gameStatus !== 'Game is active'">
+  <h4  class="gamestatus">
+    {{ gameStatus }}
+  </h4>
+</div>
+
+<div class="game">
+  <div class="d-flex flex-column">
+    <div class="d-flex">
+      <span class="square" (click)="makeMove(1)" [ngClass]="{'squarebin': winGridComb.includes(1)}">{{ cells[1] }}</span>
+      <span class="square" (click)="makeMove(2)" [ngClass]="{'squarebin': winGridComb.includes(2)}">{{ cells[2] }}</span>
+      <span class="square" (click)="makeMove(3)" [ngClass]="{'squarebin': winGridComb.includes(3)}">{{ cells[3] }}</span>
+    </div>
+    <div class="d-flex">
+      <span class="square" (click)="makeMove(4)" [ngClass]="{'squarebin': winGridComb.includes(4)}">{{ cells[4] }}</span>
+      <span class="square" (click)="makeMove(5)" [ngClass]="{'squarebin': winGridComb.includes(5)}">{{ cells[5] }}</span>
+      <span class="square" (click)="makeMove(6)" [ngClass]="{'squarebin': winGridComb.includes(6)}">{{ cells[6] }}</span>
+    </div>
+    <div class="d-flex">
+      <span class="square" (click)="makeMove(7)" [ngClass]="{'squarebin': winGridComb.includes(7)}">{{ cells[7] }}</span>
+      <span class="square" (click)="makeMove(8)" [ngClass]="{'squarebin': winGridComb.includes(8)}">{{ cells[8] }}</span>
+      <span class="square" (click)="makeMove(9)" [ngClass]="{'squarebin': winGridComb.includes(9)}">{{ cells[9] }}</span>
+    </div>
+  </div>
+</div>
+
+<div class="movesorder">
+  <textarea class="movetext" readonly>{{ moves.join('\n') }}</textarea>
+</div>
